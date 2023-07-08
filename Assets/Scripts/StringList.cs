@@ -21,4 +21,9 @@ public class StringList : ScriptableObject
 
         List = l.ToArray();
     }
+
+    public string GetRandom()
+    {
+        return List[Random.Range(0, List.Length)];
+    }
 }

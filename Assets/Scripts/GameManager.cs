@@ -10,15 +10,20 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private CardDecks cardDecks;
     [SerializeField]
-    private PlayerScenario[] playerScenarios;
-    [SerializeField]
     private CardChooser cardChooser;
+    [SerializeField]
+    private PlayerDisplay playerDisplay;
+
+    [SerializeField]
+    private PlayerScenario[] playerScenarios;
     [SerializeField]
     private IntReference cardCount;
 
     private List<CardType> unusedCards;
-    // private List<CardType> displayedCards;
     private List<CardType> discardedCards;
+
+    private PlayerScenario.Player _currentPlayer;
+    public PlayerScenario.Player CurrentPlayer => _currentPlayer;
 
     void Awake()
     {
@@ -29,8 +34,6 @@ public class GameManager : MonoBehaviour
         unusedCards.AddRange(allCards);
 
         discardedCards = new List<CardType>(allCards.Length);
-
-        // displayedCards = new List<CardType>(cardCount.Value);
     }
 
     IEnumerator Start()
@@ -45,6 +48,9 @@ public class GameManager : MonoBehaviour
 
         cardChooser.SpawnCard(cards);
         HUDDisplay.ins.UpdateCardsCount(unusedCards.Count, discardedCards.Count);
+
+        _currentPlayer = playerScenarios[Random.Range(0, playerScenarios.Length)].GetRandomPlayer();
+        playerDisplay.Display(_currentPlayer);
     }
 
     CardType GetRandomCard()
@@ -63,12 +69,17 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void ConfirmChoosedCards(CardType[] cardTypes)
-    {
-        discardedCards.AddRange(cardTypes);
 
-        CardType[] cards = new CardType[cardTypes.Length];
-        for (int i = 0; i < cardTypes.Length; i++)
+    public void DiscardCards(CardType[] discardCardTypes)
+    {
+        discardedCards.AddRange(discardCardTypes);
+        HUDDisplay.ins.UpdateCardsCount(unusedCards.Count, discardedCards.Count);
+    }
+
+    public void NewPlayerAndRedrawCard(int needCardCount)
+    {
+        CardType[] cards = new CardType[needCardCount];
+        for (int i = 0; i < cards.Length; i++)
         {
             cards[i] = GetRandomCard();
         }
@@ -76,6 +87,7 @@ public class GameManager : MonoBehaviour
         cardChooser.SpawnCardRest(cards);
         HUDDisplay.ins.UpdateCardsCount(unusedCards.Count, discardedCards.Count);
 
-        // cardChooser.SpawnCard(cards);
+        _currentPlayer = playerScenarios[Random.Range(0, playerScenarios.Length)].GetRandomPlayer();
+        playerDisplay.Display(_currentPlayer);
     }
 }

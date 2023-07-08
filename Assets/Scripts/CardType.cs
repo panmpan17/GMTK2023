@@ -11,6 +11,8 @@ public class CardType : ScriptableObject
     public string CardName;
     public Image CardImage;
 
+    public CardTag[] Tags;
+
     [Header("Temp")]
     public ColorReference BackgroundColor;
     public ColorReference SecondaryColor;

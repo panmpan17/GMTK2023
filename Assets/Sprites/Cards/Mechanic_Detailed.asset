@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef42bc8659c3e4e7b88517caad9684ba, type: 3}
   m_Name: Mechanic_Detailed
   m_EditorClassIdentifier: 
-  CardName: 
+  CardName: Detailed Explain Mechanic
   CardImage: {fileID: 0}
+  Tags:
+  - {fileID: 11400000, guid: 3ef03e0fc78f14f869735d66572df2ea, type: 2}
+  - {fileID: 11400000, guid: 21c46fbfccda7484794c585af1313dee, type: 2}
   BackgroundColor:
     Constant: {r: 0, g: 0, b: 0, a: 0}
     Variable: {fileID: 11400000, guid: 811de8e030dd545f6b135cd0f21c27e6, type: 2}

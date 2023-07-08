@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef42bc8659c3e4e7b88517caad9684ba, type: 3}
   m_Name: Greeting_Long
   m_EditorClassIdentifier: 
-  CardName: 
+  CardName: Long Greeting
   CardImage: {fileID: 0}
+  Tags:
+  - {fileID: 11400000, guid: e029149369b644b14a30acb0ec5b8395, type: 2}
+  - {fileID: 11400000, guid: 928261154ffe34686bb3b49067aa1b73, type: 2}
   BackgroundColor:
     Constant: {r: 0, g: 0, b: 0, a: 0}
     Variable: {fileID: 11400000, guid: 4b09024e2e3174fae8eb81baa0488616, type: 2}

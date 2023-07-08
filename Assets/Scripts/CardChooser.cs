@@ -119,24 +119,41 @@ public class CardChooser : MonoBehaviour
             return;
         }
 
-        CardType[] seletedCardTypes = new CardType[_selectedCards.Count];
-        for (int i = 0; i < _selectedCards.Count; i++)
-        {
-            seletedCardTypes[i] = _selectedCards[i].CardType;
-        }
-
+        List<CardType> discards = new List<CardType>();
         for (int i = 0; i < _currentCards.Length; i++)
         {
             if (_currentCards[i].IsSelected)
+                _currentCards[i] = null;
+            else if (_currentCards[i].IsDiscard)
             {
-                Destroy(_currentCards[i].gameObject);
+                _currentCards[i].DiscardAndDestroy();
+                discards.Add(_currentCards[i].CardType);
                 _currentCards[i] = null;
             }
         }
 
         enabled = false;
+
+        if (discards.Count > 0)
+        {
+            GameManager.ins.DiscardCards(discards.ToArray());
+        }
+        TellStoryDisplay.ins.StartTelling(_selectedCards.ToArray(), discards.Count > 0);
+
         _selectedCards.Clear();
-        GameManager.ins.ConfirmChoosedCards(seletedCardTypes);
     }
-    // private Card
+
+    public void Redraw()
+    {
+        int cardNeed = 0;
+        for (int i = 0; i < _currentCards.Length; i++)
+        {
+            if (_currentCards[i])
+                continue;
+
+            cardNeed++;
+        }
+
+        GameManager.ins.NewPlayerAndRedrawCard(cardNeed);
+    }
 }

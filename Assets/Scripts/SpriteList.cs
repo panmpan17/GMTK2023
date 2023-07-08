@@ -7,4 +7,9 @@ using UnityEngine;
 public class SpriteList : ScriptableObject
 {
     public Sprite[] List;
+
+    public Sprite GetRandom()
+    {
+        return List[Random.Range(0, List.Length)];
+    }
 }

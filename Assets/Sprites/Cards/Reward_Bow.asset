@@ -12,13 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef42bc8659c3e4e7b88517caad9684ba, type: 3}
   m_Name: Reward_Bow
   m_EditorClassIdentifier: 
-  CardName: 
+  CardName: Reward Item "Bow"
   CardImage: {fileID: 0}
+  Tags:
+  - {fileID: 11400000, guid: 0a8c42a838657451f9918473267c8c3f, type: 2}
+  - {fileID: 11400000, guid: b073c380c3e904ba2a1a4ed793a433fa, type: 2}
   BackgroundColor:
     Constant: {r: 0, g: 0, b: 0, a: 0}
     Variable: {fileID: 11400000, guid: 080a6ebd6bab24d6191be5a596198347, type: 2}
     UseVariable: 1
   SecondaryColor:
-    Constant: {r: 1, g: 1, b: 1, a: 1}
+    Constant: {r: 0.57424724, g: 0.8018868, b: 0.45768067, a: 1}
     Variable: {fileID: 0}
     UseVariable: 0

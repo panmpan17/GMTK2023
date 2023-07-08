@@ -10,15 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef42bc8659c3e4e7b88517caad9684ba, type: 3}
-  m_Name: Story_SadEnd
+  m_Name: Story_Short
   m_EditorClassIdentifier: 
-  CardName: 
+  CardName: Tell Short Funny
   CardImage: {fileID: 0}
+  Tags:
+  - {fileID: 11400000, guid: 657a51062fd3e40f087970099747707b, type: 2}
+  - {fileID: 11400000, guid: ed23d62d1d107439298a42c73595a27e, type: 2}
   BackgroundColor:
     Constant: {r: 0, g: 0, b: 0, a: 0}
     Variable: {fileID: 11400000, guid: 72dac33bf25d342378ef08341d33390a, type: 2}
     UseVariable: 1
   SecondaryColor:
-    Constant: {r: 0.45257276, g: 0.37833747, b: 0.735849, a: 1}
+    Constant: {r: 0.44918123, g: 0.9245283, b: 0.9245283, a: 1}
     Variable: {fileID: 0}
     UseVariable: 0

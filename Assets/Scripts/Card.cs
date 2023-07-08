@@ -9,9 +9,13 @@ using TMPro;
 public class Card : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField]
+    private CanvasGroup canvasGroup;
+    [SerializeField]
     private Image outterImage;
     [SerializeField]
     private Image innerImage;
+    [SerializeField]
+    private TextMeshProUGUI cardName;
 
     [SerializeField]
     private GameObject selectedNumber;
@@ -22,6 +26,8 @@ public class Card : MonoBehaviour, IPointerClickHandler
     private Vector2 selectedPosition;
     [SerializeField]
     private float positionTweenTime;
+    [SerializeField]
+    private float discardTime;
 
     [Header("Discard")]
     [SerializeField]
@@ -60,6 +66,7 @@ public class Card : MonoBehaviour, IPointerClickHandler
         CardType = cardType;
         outterImage.color = cardType.BackgroundColor.Value;
         innerImage.color = cardType.SecondaryColor.Value;
+        cardName.text = cardType.CardName;
 
         _unselectedPosition = position;
         _rectTransform.anchoredPosition = position;
@@ -115,5 +122,44 @@ public class Card : MonoBehaviour, IPointerClickHandler
         discardIcon.color = IsDiscard ? discardIconColorSelected : discardIconColor;
 
         OnDiscard.Invoke(this);
+    }
+
+    public void DiscardAndDestroy()
+    {
+        Tween.FloatTween(
+            1f,
+            0f,
+            discardTime,
+            (float value) => canvasGroup.alpha = value);
+        Tween.MoveTo(
+            _rectTransform,
+            _rectTransform.anchoredPosition,
+            _rectTransform.anchoredPosition + Vector2.down * 20f,
+            discardTime,
+            () => Destroy(gameObject)
+            );
+    }
+
+
+    public void MoveUp()
+    {
+        Tween.MoveTo(
+            _rectTransform,
+            _rectTransform.anchoredPosition,
+            _rectTransform.anchoredPosition + Vector2.up * 40f,
+            0.3f);
+    }
+
+    public void Use()
+    {
+        Tween.FloatTween(
+            0f,
+            1f,
+            0.5f,
+            (float value) => {
+                canvasGroup.alpha = 1 - value;
+                transform.localScale = Vector3.Lerp(Vector3.one, Vector3.one * 1.5f, value);
+            
+        }, () => Destroy(gameObject));
     }
 }

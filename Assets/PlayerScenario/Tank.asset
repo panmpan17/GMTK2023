@@ -14,4 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerName: {fileID: 11400000, guid: 8bbd4884fbfd04d308f1106a18983155, type: 2}
   Avatar: {fileID: 0}
-  Profession: 0
+  PassionRange:
+    ConstantMin: 0
+    ConstantMax: 0
+    Variable: {fileID: 0}
+    UseVariable: 0
+  ProfessionReacts:
+  - Tag: {fileID: 11400000, guid: 4c92f6e1fbd384daba30e9f3a9f35301, type: 2}
+    Value: 1
+  - Tag: {fileID: 11400000, guid: 9e0c9c54aaba94bfd9b9f705b58314b5, type: 2}
+    Value: 0.5
+  CharacteristicSets:
+  - Characteristics:
+    - {fileID: 11400000, guid: 134ec16ebb8c64c1bb23fa693a5db203, type: 2}
+    - {fileID: 11400000, guid: 8086d69637ed04c468d46956ce827d10, type: 2}
+    - {fileID: 11400000, guid: 3fe3d075e4b2148e5b8bb92e249cd982, type: 2}
+    - {fileID: 11400000, guid: 70ce4d4c5c6e7422bbc3ea56def71a5d, type: 2}
