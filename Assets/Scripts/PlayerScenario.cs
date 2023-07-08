@@ -7,6 +7,9 @@ using UnityEngine;
 public class PlayerScenario : ScriptableObject
 {
     public StringList PlayerName;
+    public SpriteList Avatar;
+
+    [Header("Details")]
     public Profession Profession;
 }
 

@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 288b03349a25d44329bcbbf6290e1d71, type: 3}
+  m_Name: PlayerNames
+  m_EditorClassIdentifier: 
+  List:
+  - Talon
+  - Blaze
+  - Magnus
+  - Reaper
+  - Axel
+  - Orion
+  - Phoenix
+  - Dante
+  - Jaxon
+  - Hunter
+  - Blade
+  - Maximus
+  - Shadow
+  - Atlas
+  - Titan
+  - Falcon
+  - Thunder
+  - Raptor
+  - Rogue
+  - Zephyr
+  - Aurora
+  - Luna
+  - Ember
+  - Nova
+  - Ivy
+  - Seraphina
+  - Raven
+  - Athena
+  - Sapphire
+  - Violet
+  - Mystique
+  - Celeste
+  - Lyra
+  - Electra
+  - Tempest
+  - Phoenix
+  - Jade
+  - Astrid
+  - Aurora
+  - Willow
+  InputMassiveValue: 

@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 469f469811f97455f8a508cb34ba36d9, type: 3}
+  m_Name: Deck_Test
+  m_EditorClassIdentifier: 
+  Cards:
+  - CardType: {fileID: 11400000, guid: ca498505d1cf9433ba7e4413ed5ad0d4, type: 2}
+    Amount: 1
+  - CardType: {fileID: 11400000, guid: e336b73d275b54bdeb8cd99a62144604, type: 2}
+    Amount: 1
+  - CardType: {fileID: 11400000, guid: 69fff1d893e054787849822ae4f21c0a, type: 2}
+    Amount: 1
+  - CardType: {fileID: 11400000, guid: 063f3e894bda04f4babb347e7c78e72c, type: 2}
+    Amount: 1
+  - CardType: {fileID: 11400000, guid: 5362befc261cd47e183b05ce73c5e6a0, type: 2}
+    Amount: 1
+  - CardType: {fileID: 11400000, guid: a50454b7f6c384b8da3193b0c2f75a0e, type: 2}
+    Amount: 1
+  - CardType: {fileID: 11400000, guid: 1f3c81004c7c34b4889d9032bebfd992, type: 2}
+    Amount: 1
+  - CardType: {fileID: 11400000, guid: 6960ea311022e473084cc261480a8638, type: 2}
+    Amount: 1
+  - CardType: {fileID: 11400000, guid: cd90b743fc6784148b762d044b6f853b, type: 2}
+    Amount: 1
+  - CardType: {fileID: 11400000, guid: 8a290d75a6394411d92ae763fc01b487, type: 2}
+    Amount: 1
+  - CardType: {fileID: 11400000, guid: 3f95269c7778e4e9fbd26d9feb8896af, type: 2}
+    Amount: 1
+  - CardType: {fileID: 11400000, guid: e1d2de60d3f1b4549a48d36109380ea9, type: 2}
+    Amount: 1
+  - CardType: {fileID: 11400000, guid: dfd89a3f6fb1b49a78c1fca7b9f4b6b1, type: 2}
+    Amount: 1
+  - CardType: {fileID: 11400000, guid: 60807cdd69f914afea6adb7acc219002, type: 2}
+    Amount: 1
+  - CardType: {fileID: 11400000, guid: c588ab69d74df4165849f8b9dde3071e, type: 2}
+    Amount: 1
+  - CardType: {fileID: 11400000, guid: 9a0502183851b41daa1089c276887634, type: 2}
+    Amount: 1
+  - CardType: {fileID: 11400000, guid: 63205514a6269458a8b8fdcb9f6dd7e9, type: 2}
+    Amount: 1
+  - CardType: {fileID: 11400000, guid: bddc1acccbc1749c7965a870fc397fac, type: 2}
+    Amount: 1
+  CardInputs: []
