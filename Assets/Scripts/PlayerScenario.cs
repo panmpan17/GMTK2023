@@ -52,7 +52,7 @@ public class PlayerScenario : ScriptableObject
     public class Player
     {
         public string Name;
-        public float Passion;
+        public float Patient;
         public Sprite Avatar;
         public PlayerCharacteristic.TagReact[] ProfessionReacts;
         public PlayerCharacteristic[] Characteristics;
@@ -62,7 +62,7 @@ public class PlayerScenario : ScriptableObject
             Name = name;
             Avatar = avatar;
 
-            Passion = Mathf.Round(passion * 10f) / 10f;;
+            Patient = Mathf.Round(passion * 10f) / 10f;;
 
             ProfessionReacts = professionReacts;
             Characteristics = characteristics;
@@ -93,7 +93,7 @@ public class PlayerScenario : ScriptableObject
                 }
             }
 
-            Passion += passionChange;
+            Patient += passionChange;
             PlayerDisplay.ins.UpdatePassion();
         }
 

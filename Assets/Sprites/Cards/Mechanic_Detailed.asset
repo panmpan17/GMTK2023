@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardName: Detailed Explain Mechanic
   CardImage: {fileID: 0}
+  CardTypeIcon: {fileID: 1254595851, guid: 79b1dbd7d76e5437ebd5320bfa303a19, type: 3}
   Tags:
   - {fileID: 11400000, guid: 3ef03e0fc78f14f869735d66572df2ea, type: 2}
   - {fileID: 11400000, guid: 21c46fbfccda7484794c585af1313dee, type: 2}

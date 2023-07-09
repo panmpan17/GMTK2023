@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using MPack;
 using TMPro;
 
@@ -10,13 +11,29 @@ public class CardChooser : MonoBehaviour
 
     [SerializeField]
     private Card cardPrefab;
+    [SerializeField]
+    private Transform spawnPoint;
+    [SerializeField]
+    private Button submitButton;
 
     [SerializeField]
-    private Vector2 firstCardPosition;
+    private float firstCardRotation;
     [SerializeField]
-    private Vector2 finalCardPosition;
+    private float finalCardRotation;
+    [SerializeField]
+    private RangeReference cardPositionX;
+    [SerializeField]
+    private RangeReference cardPositionY;
+    [SerializeField]
+    private AnimationCurve cardPositionYCurve;
+
     [SerializeField]
     private IntReference maxChooseCount;
+
+    [SerializeField]
+    private TextMeshProUGUI cardCountText;
+    [SerializeField]
+    private string cardCountTextFormat;
 
 
     private Card[] _currentCards;
@@ -27,42 +44,50 @@ public class CardChooser : MonoBehaviour
         ins = this;
 
         _selectedCards = new List<Card>(maxChooseCount.Value);
+        submitButton.interactable = false;
+        cardCountText.text = string.Format(cardCountTextFormat, 0, maxChooseCount.Value);
     }
 
 
     public void SpawnCard(CardType[] cardTypes)
     {
         _currentCards = new Card[cardTypes.Length];
-
-        int length = cardTypes.Length;
-        for (int i = 0; i < length; i++)
-        {
-            Card card = Instantiate(cardPrefab, transform);
-            card.Setup(cardTypes[i],  Vector2.Lerp(firstCardPosition, finalCardPosition, (float)i / (length - 1)));
-
-            card.OnClick += OnCardClick;
-            card.OnDiscard += OnCardDiscard;
-
-            _currentCards[i] = card;
-        }
+        StartCoroutine(SpawnCardIEnumerator(cardTypes));
     }
 
     public void SpawnCardRest(CardType[] cardTypes)
+    {
+        StartCoroutine(SpawnCardIEnumerator(cardTypes));
+    }
+    IEnumerator SpawnCardIEnumerator(CardType[] cardTypes)
     {
         int cardTypeIndex = 0;
         int length = _currentCards.Length;
         for (int i = 0; i < length; i++)
         {
             if (_currentCards[i])
+            {
+                _currentCards[i].transform.SetSiblingIndex(i);
                 continue;
+            }
+
+            float percentage = (float)i / (length - 1);
 
             Card card = Instantiate(cardPrefab, transform);
-            card.Setup(cardTypes[cardTypeIndex++], Vector2.Lerp(firstCardPosition, finalCardPosition, (float)i / (length - 1)));
+            card.transform.SetSiblingIndex(i);
+            card.transform.position = spawnPoint.position;
+            // card.transform.rotation = Quaternion.Euler(0, 0, Mathf.Lerp(firstCardRotation, finalCardRotation, percentage));
+
+            float rotationAngle = Mathf.Lerp(firstCardRotation, finalCardRotation, percentage);
+            var position = new Vector2(cardPositionX.Lerp(percentage), cardPositionY.Lerp(cardPositionYCurve.Evaluate(percentage)));
+            card.Setup(cardTypes[cardTypeIndex++], position, rotationAngle);
 
             card.OnClick += OnCardClick;
             card.OnDiscard += OnCardDiscard;
 
             _currentCards[i] = card;
+
+            yield return new WaitForSeconds(0.4f);
         }
 
         enabled = true;
@@ -75,7 +100,7 @@ public class CardChooser : MonoBehaviour
 
         for (int i = 0; i < _selectedCards.Count; i++)
         {
-            _selectedCards[i].Select(i + 1);
+            _selectedCards[i].Select(i);
         }
     }
 
@@ -96,9 +121,12 @@ public class CardChooser : MonoBehaviour
             if (card.IsDiscard)
                 card.UnDiscard();
 
-            _selectedCards.Add(card);
             card.Select(_selectedCards.Count);
+            _selectedCards.Add(card);
         }
+
+        cardCountText.text = string.Format(cardCountTextFormat, _selectedCards.Count, maxChooseCount.Value);
+        submitButton.interactable = _selectedCards.Count >= maxChooseCount.Value;
     }
 
     public void OnCardDiscard(Card card)
@@ -141,6 +169,8 @@ public class CardChooser : MonoBehaviour
         TellStoryDisplay.ins.StartTelling(_selectedCards.ToArray(), discards.Count > 0);
 
         _selectedCards.Clear();
+        submitButton.interactable = false;
+        cardCountText.text = "";
     }
 
     public void Redraw()
@@ -155,5 +185,16 @@ public class CardChooser : MonoBehaviour
         }
 
         GameManager.ins.NewPlayerAndRedrawCard(cardNeed);
+        cardCountText.text = string.Format(cardCountTextFormat, 0, maxChooseCount.Value);
+    }
+
+    public void HideAllCards()
+    {
+        for (int i = 0; i < _currentCards.Length; i++)
+        {
+            if (_currentCards[i])
+                _currentCards[i].gameObject.SetActive(false);
+        }
+        submitButton.gameObject.SetActive(false);
     }
 }

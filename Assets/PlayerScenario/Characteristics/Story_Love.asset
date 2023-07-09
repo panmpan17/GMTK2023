@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50c30ba9ec03f488c82186380c5c46d2, type: 3}
-  m_Name: Short_Like
+  m_Name: Story_Love
   m_EditorClassIdentifier: 
+  Icon: {fileID: -1108011951, guid: 969768a81d6954feaa93a768bfd82710, type: 3}
   TagReacts:
-  - Tag: {fileID: 11400000, guid: ed23d62d1d107439298a42c73595a27e, type: 2}
-    Value: 0.4
+  - Tag: {fileID: 11400000, guid: 657a51062fd3e40f087970099747707b, type: 2}
+    Value: 1
   - Tag: {fileID: 11400000, guid: 928261154ffe34686bb3b49067aa1b73, type: 2}
-    Value: -1.5
+    Value: 0.4

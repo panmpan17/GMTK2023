@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardName: Show Screenshot
   CardImage: {fileID: 0}
+  CardTypeIcon: {fileID: 899645565, guid: 79b1dbd7d76e5437ebd5320bfa303a19, type: 3}
   Tags:
   - {fileID: 11400000, guid: bfebc2602126e44e5a6aad2599cb30a3, type: 2}
   - {fileID: 11400000, guid: 928261154ffe34686bb3b49067aa1b73, type: 2}

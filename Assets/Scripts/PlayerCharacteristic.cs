@@ -12,6 +12,7 @@ public class PlayerCharacteristic : ScriptableObject
 {
     // [Range(0, 2)]
     // public float Multiplier;
+    public Sprite Icon;
     public TagReact[] TagReacts;
 
     [System.Serializable]

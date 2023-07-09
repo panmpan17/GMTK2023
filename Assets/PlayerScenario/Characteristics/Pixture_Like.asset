@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50c30ba9ec03f488c82186380c5c46d2, type: 3}
-  m_Name: ReallyLikeStory
+  m_Name: Pixture_Like
   m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 3676a6bff3625406eac49073a656f172, type: 3}
   TagReacts:
-  - Tag: {fileID: 11400000, guid: 657a51062fd3e40f087970099747707b, type: 2}
-    Value: 1
+  - Tag: {fileID: 11400000, guid: bfebc2602126e44e5a6aad2599cb30a3, type: 2}
+    Value: 0.4

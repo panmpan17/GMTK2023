@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50c30ba9ec03f488c82186380c5c46d2, type: 3}
+  m_Name: Mechanic_Dislike
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 1214205867, guid: be433378033f2442b8229aa355fcf74f, type: 3}
+  TagReacts:
+  - Tag: {fileID: 11400000, guid: 3ef03e0fc78f14f869735d66572df2ea, type: 2}
+    Value: -0.7
+  - Tag: {fileID: 11400000, guid: 928261154ffe34686bb3b49067aa1b73, type: 2}
+    Value: -0.3
+  - Tag: {fileID: 11400000, guid: ed23d62d1d107439298a42c73595a27e, type: 2}
+    Value: 0.4

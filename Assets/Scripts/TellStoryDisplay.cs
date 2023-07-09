@@ -34,19 +34,33 @@ public class TellStoryDisplay : MonoBehaviour
             card.MoveUp();
             yield return new WaitForSeconds(0.35f);
             card.Use();
+            GameManager.ins.DiscardCards(card.CardType);
+
             yield return new WaitForSeconds(0.4f);
 
             GameManager.ins.CurrentPlayer.ReactToCard(card.CardType);
 
-            if (GameManager.ins.CurrentPlayer.Passion <= 0)
+            if (GameManager.ins.CurrentPlayer.Patient <= 0)
             {
-                yield return StartCoroutine(PlayerLeave());
-
                 i++;
                 for (; i < length; i++)
-                    Destroy(cards[i].gameObject);
+                {
+                    cards[i].DiscardAndDestroy();
+                    GameManager.ins.DiscardCards(cards[i].CardType);
+                }
+                bool failed = GameManager.ins.Fail();
+
+                
+                PlayerDisplay.ins.ShowSkipSign();
+                yield return new WaitForSeconds(1.2f);
+                PlayerDisplay.ins.Leave();
+                yield return new WaitForSeconds(1f);
+
+                if (failed)
+                    yield break;
 
                 CardChooser.ins.Redraw();
+
                 yield break;
             }
 
@@ -57,12 +71,21 @@ public class TellStoryDisplay : MonoBehaviour
 
         yield return new WaitForSeconds(0.35f);
 
-        CardChooser.ins.Redraw();
+        PlayerDisplay.ins.ShowThanksSign();
+        bool success = GameManager.ins.Success();
+
+        yield return new WaitForSeconds(0.8f);
+        PlayerDisplay.ins.Leave();
+        yield return new WaitForSeconds(1f);
+
+        if (!success)
+            CardChooser.ins.Redraw();
     }
 
-    IEnumerator PlayerLeave()
-    {
-        PlayerDisplay.ins.SkipAndLeave();
-        yield return new WaitForSeconds(.5f);
-    }
+    // IEnumerator PlayerLeave()
+    // {
+    //     PlayerDisplay.ins.ShowSkipSign();
+    //     yield return new WaitForSeconds(0.6f);
+    //     PlayerDisplay.ins.Leave();
+    // }
 }

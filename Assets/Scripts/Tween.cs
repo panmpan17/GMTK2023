@@ -47,6 +47,33 @@ public class Tween : MonoBehaviour
         });
     }
 
+    public static void FloatTween(float from, float to, float duration, System.Action<float> onUpdate, AnimationCurve curve, System.Action onComplete = null)
+    {
+        _ins._tweenDatas.Add(new FloatTweenData
+        {
+            From = from,
+            To = to,
+            Duration = duration,
+            OnUpdate = onUpdate,
+            OnComplete = onComplete,
+            UseCurve = true,
+            Curve = curve,
+        });
+    }
+
+    public static void ColorTween(Color from, Color to, float duration, System.Action<Color> onUpdate, System.Action onComplete = null)
+    {
+        _ins._tweenDatas.Add(new ColorTweenData
+        {
+            From = from,
+            To = to,
+            Duration = duration,
+            OnUpdate = onUpdate,
+            OnComplete = onComplete,
+            UseCurve = false
+        });
+    }
+
     private List<ITweenData> _tweenDatas;
 
 
@@ -137,6 +164,37 @@ public class Tween : MonoBehaviour
                 RectTransform.anchoredPosition = Vector2.Lerp(From, To, Curve.Evaluate(Time / Duration));
             else
                 RectTransform.anchoredPosition = Vector2.Lerp(From, To, Time / Duration);
+
+            IsFinished = Time >= Duration;
+
+            if (IsFinished)
+                OnComplete?.Invoke();
+        }
+    }
+
+    public struct ColorTweenData : ITweenData
+    {
+        public Color From;
+        public Color To;
+        public float Duration;
+        public float Time;
+
+        public System.Action<Color> OnUpdate;
+        public System.Action OnComplete;
+
+        public bool UseCurve;
+        public AnimationCurve Curve;
+
+        public bool IsFinished { get; private set; }
+
+        public void Update(float t)
+        {
+            Time += t;
+
+            if (UseCurve)
+                OnUpdate?.Invoke(Color.Lerp(From, To, Curve.Evaluate(Time / Duration)));
+            else
+                OnUpdate?.Invoke(Color.Lerp(From, To, Time / Duration));
 
             IsFinished = Time >= Duration;
 

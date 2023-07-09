@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardName: Short Greeting
   CardImage: {fileID: 0}
+  CardTypeIcon: {fileID: 1540121679, guid: 79b1dbd7d76e5437ebd5320bfa303a19, type: 3}
   Tags:
   - {fileID: 11400000, guid: e029149369b644b14a30acb0ec5b8395, type: 2}
   - {fileID: 11400000, guid: ed23d62d1d107439298a42c73595a27e, type: 2}

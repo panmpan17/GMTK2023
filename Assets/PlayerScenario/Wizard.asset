@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Wizard
   m_EditorClassIdentifier: 
   PlayerName: {fileID: 11400000, guid: 8bbd4884fbfd04d308f1106a18983155, type: 2}
-  Avatar: {fileID: 0}
+  Avatar: {fileID: 11400000, guid: a41df0bbb30974ca3a54b15ca5cca91d, type: 2}
   PassionRange:
     ConstantMin: 0
     ConstantMax: 0
-    Variable: {fileID: 0}
-    UseVariable: 0
+    Variable: {fileID: 11400000, guid: 194ba5664f64b4380b239291d32e847d, type: 2}
+    UseVariable: 1
   ProfessionReacts:
   - Tag: {fileID: 11400000, guid: 7f5bb6e9b1f0a4dc090b09bb6b4a6a55, type: 2}
     Value: 1
@@ -26,7 +26,29 @@ MonoBehaviour:
     Value: 0.5
   CharacteristicSets:
   - Characteristics:
+    - {fileID: 11400000, guid: 70ce4d4c5c6e7422bbc3ea56def71a5d, type: 2}
+    - {fileID: 0}
+    - {fileID: 11400000, guid: 134ec16ebb8c64c1bb23fa693a5db203, type: 2}
     - {fileID: 11400000, guid: 134ec16ebb8c64c1bb23fa693a5db203, type: 2}
     - {fileID: 11400000, guid: 8086d69637ed04c468d46956ce827d10, type: 2}
+    - {fileID: 11400000, guid: 8086d69637ed04c468d46956ce827d10, type: 2}
     - {fileID: 11400000, guid: 3fe3d075e4b2148e5b8bb92e249cd982, type: 2}
-    - {fileID: 11400000, guid: 70ce4d4c5c6e7422bbc3ea56def71a5d, type: 2}
+    - {fileID: 11400000, guid: 3fe3d075e4b2148e5b8bb92e249cd982, type: 2}
+  - Characteristics:
+    - {fileID: 11400000, guid: cf52288969bec4461a18e2c8da53e6ae, type: 2}
+    - {fileID: 11400000, guid: 5f191fd6db039470485bdf08b6ebb2c0, type: 2}
+    - {fileID: 11400000, guid: d9db2e4efc8fa4b599995e2868870cdb, type: 2}
+    - {fileID: 11400000, guid: 96f220fbca09e4ee9bf6ea1ebee3a632, type: 2}
+    - {fileID: 0}
+  - Characteristics:
+    - {fileID: 11400000, guid: 08d2ce2b9e7754fe9bc8ea35de8a5da0, type: 2}
+    - {fileID: 0}
+    - {fileID: 0}
+  - Characteristics:
+    - {fileID: 11400000, guid: c0e1aa021af674355b0148ec6d81500a, type: 2}
+    - {fileID: 11400000, guid: 3613d84111d6d4df8ac3ec5d5e417073, type: 2}
+    - {fileID: 0}
+    - {fileID: 11400000, guid: 4d3679411b0dd4ac984eb64e646fcfa1, type: 2}
+    - {fileID: 11400000, guid: 4d3679411b0dd4ac984eb64e646fcfa1, type: 2}
+    - {fileID: 11400000, guid: a660b2dca4fb2438884ee6183badba66, type: 2}
+    - {fileID: 11400000, guid: a660b2dca4fb2438884ee6183badba66, type: 2}

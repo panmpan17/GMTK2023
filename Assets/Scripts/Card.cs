@@ -6,30 +6,31 @@ using UnityEngine.EventSystems;
 using TMPro;
 
 
-public class Card : MonoBehaviour, IPointerClickHandler
+public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField]
     private CanvasGroup canvasGroup;
     [SerializeField]
-    private Image outterImage;
+    private TextMeshProUGUI[] cardNames;
     [SerializeField]
-    private Image innerImage;
-    [SerializeField]
-    private TextMeshProUGUI cardName;
-
-    [SerializeField]
-    private GameObject selectedNumber;
-    [SerializeField]
-    private TextMeshProUGUI selectedNumberText;
+    private Image typeImage;
 
     [SerializeField]
     private Vector2 selectedPosition;
     [SerializeField]
     private float positionTweenTime;
     [SerializeField]
-    private float discardTime;
+    private AnimationCurve positionTweenCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+
+    [Header("Select Index")]
+    [SerializeField]
+    private Image selectedNumber;
+    [SerializeField]
+    private Sprite[] selectedNumberSprites;
 
     [Header("Discard")]
+    [SerializeField]
+    private float discardTime;
     [SerializeField]
     private Image discardButton;
     [SerializeField]
@@ -58,18 +59,26 @@ public class Card : MonoBehaviour, IPointerClickHandler
         discardButton.color = IsDiscard ? discardButtonColorSelected : discardButtonColor;
         discardIcon.color = IsDiscard ? discardIconColorSelected : discardIconColor;
 
-        selectedNumber.SetActive(false);
+        selectedNumber.enabled = false;
     }
 
-    public void Setup(CardType cardType, Vector2 position)
+    public void Setup(CardType cardType, Vector2 position, float rotationAngle)
     {
         CardType = cardType;
-        outterImage.color = cardType.BackgroundColor.Value;
-        innerImage.color = cardType.SecondaryColor.Value;
-        cardName.text = cardType.CardName;
+        // outterImage.color = cardType.BackgroundColor.Value;
+        // innerImage.color = cardType.SecondaryColor.Value;
+
+        foreach (var cardName in cardNames)
+            cardName.text = cardType.CardName;
+
+        typeImage.sprite = cardType.CardTypeIcon;
+        typeImage.rectTransform.sizeDelta = cardType.CardTypeIcon.rect.size;
 
         _unselectedPosition = position;
-        _rectTransform.anchoredPosition = position;
+        // _rectTransform.anchoredPosition = position;
+
+        Tween.MoveTo(_rectTransform, _rectTransform.anchoredPosition, position, 0.6f, positionTweenCurve);
+        Tween.FloatTween(0, rotationAngle, 0.6f, (value) => _rectTransform.rotation = Quaternion.Euler(0, 0, value), positionTweenCurve);
     }
 
     void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
@@ -77,18 +86,46 @@ public class Card : MonoBehaviour, IPointerClickHandler
         OnClick.Invoke(this);
     }
 
-    public void Select(int number)
+    void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
         if (IsSelected)
             return;
+
+        Vector2 delta = transform.rotation * (Vector3)selectedPosition;
+        Tween.MoveTo(
+            _rectTransform,
+            _rectTransform.anchoredPosition,
+            _unselectedPosition + delta, positionTweenTime);
+    }
+
+    void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
+    {
+        if (IsSelected)
+            return;
+
+        Tween.MoveTo(_rectTransform, _rectTransform.anchoredPosition, _unselectedPosition, positionTweenTime);
+    }
+
+    public void Select(int index)
+    {
+        if (IsSelected)
+        {
+            selectedNumber.sprite = selectedNumberSprites[index];
+            return;
+        }
         
         if (IsDiscard)
             UnDiscard();
 
-        selectedNumber.SetActive(true);
-        selectedNumberText.text = number.ToString();
+        selectedNumber.sprite = selectedNumberSprites[index];
+        selectedNumber.enabled = true;
 
-        Tween.MoveTo(_rectTransform, _unselectedPosition, _unselectedPosition + selectedPosition, positionTweenTime);
+
+        Vector2 delta = transform.rotation * (Vector3)(selectedPosition * 1.5f);
+        Tween.MoveTo(
+            _rectTransform,
+            _rectTransform.anchoredPosition,
+            _unselectedPosition + delta, positionTweenTime);
 
         IsSelected = true;
     }
@@ -98,7 +135,7 @@ public class Card : MonoBehaviour, IPointerClickHandler
         if (!IsSelected)
             return;
 
-        selectedNumber.SetActive(false);
+        selectedNumber.enabled = false;
 
         Tween.MoveTo(_rectTransform, _rectTransform.anchoredPosition, _unselectedPosition, positionTweenTime);
 
@@ -136,6 +173,7 @@ public class Card : MonoBehaviour, IPointerClickHandler
             _rectTransform.anchoredPosition,
             _rectTransform.anchoredPosition + Vector2.down * 20f,
             discardTime,
+            positionTweenCurve,
             () => Destroy(gameObject)
             );
     }

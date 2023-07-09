@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardName: Reward Item "Money"
   CardImage: {fileID: 0}
+  CardTypeIcon: {fileID: -1625852073, guid: 79b1dbd7d76e5437ebd5320bfa303a19, type: 3}
   Tags:
   - {fileID: 11400000, guid: 0a8c42a838657451f9918473267c8c3f, type: 2}
   - {fileID: 11400000, guid: b073c380c3e904ba2a1a4ed793a433fa, type: 2}

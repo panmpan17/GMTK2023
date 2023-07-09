@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardName: Tell Detailed Story
   CardImage: {fileID: 0}
+  CardTypeIcon: {fileID: -508778271, guid: 79b1dbd7d76e5437ebd5320bfa303a19, type: 3}
   Tags:
   - {fileID: 11400000, guid: 657a51062fd3e40f087970099747707b, type: 2}
   - {fileID: 11400000, guid: 21c46fbfccda7484794c585af1313dee, type: 2}

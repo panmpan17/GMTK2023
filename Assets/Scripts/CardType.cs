@@ -10,6 +10,7 @@ public class CardType : ScriptableObject
 {
     public string CardName;
     public Image CardImage;
+    public Sprite CardTypeIcon;
 
     public CardTag[] Tags;
 
