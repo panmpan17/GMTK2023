@@ -68,9 +68,9 @@ public class PlayerScenario : ScriptableObject
             Characteristics = characteristics;
         }
 
-        public void ReactToCard(CardType cardType)
+        public float ReactToCard(CardType cardType)
         {
-            float passionChange = -0.5f;
+            float passionChange = -0.3f;
 
             foreach (var react in ProfessionReacts)
             {
@@ -95,6 +95,7 @@ public class PlayerScenario : ScriptableObject
 
             Patient += passionChange;
             PlayerDisplay.ins.UpdatePassion();
+            return passionChange;
         }
 
         bool Contains(CardType cardType, CardTag _tag)

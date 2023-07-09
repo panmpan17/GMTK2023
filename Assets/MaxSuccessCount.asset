@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cbdd0ff7a2874be6bc0b00f247e4df9, type: 3}
   m_Name: MaxSuccessCount
   m_EditorClassIdentifier: 
-  Value: 10
+  Value: 6

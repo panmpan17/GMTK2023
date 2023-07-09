@@ -17,8 +17,8 @@ MonoBehaviour:
   - Tag: {fileID: 11400000, guid: bfdfe71d829404140ac110b8739ce64e, type: 2}
     Value: 0.3
   - Tag: {fileID: 11400000, guid: 3947a0886e9494ef7aba4b0098d3dce9, type: 2}
-    Value: 1
+    Value: 1.2
   - Tag: {fileID: 11400000, guid: 8a3ade5da0f0847f4b5ee56de2148c33, type: 2}
-    Value: -1.2
+    Value: -0.9
   - Tag: {fileID: 11400000, guid: 52fdee0f20d4a4d7498208660bc6bc97, type: 2}
-    Value: -0.5
+    Value: -0.3

@@ -9,6 +9,9 @@ public class TellStoryDisplay : MonoBehaviour
     [SerializeField]
     private float waitTime;
 
+    [SerializeField]
+    private UISoundEffect patienceIncreaseSound, patienceDecreaseSound;
+
 
     void Awake()
     {
@@ -38,7 +41,15 @@ public class TellStoryDisplay : MonoBehaviour
 
             yield return new WaitForSeconds(0.4f);
 
-            GameManager.ins.CurrentPlayer.ReactToCard(card.CardType);
+            float patienceChanged = GameManager.ins.CurrentPlayer.ReactToCard(card.CardType);
+            if (patienceChanged > 0)
+            {
+                patienceIncreaseSound.Play();
+            }
+            else if (patienceChanged < 0)
+            {
+                patienceDecreaseSound.Play();
+            }
 
             if (GameManager.ins.CurrentPlayer.Patient <= 0)
             {

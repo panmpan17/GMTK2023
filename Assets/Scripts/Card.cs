@@ -40,6 +40,14 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     [SerializeField]
     private Color discardIconColor, discardIconColorSelected;
 
+    [Header("Sound")]
+    [SerializeField]
+    private UISoundEffect selectSound;
+    [SerializeField]
+    private UISoundEffect unselectSound, hoverSound;
+    [SerializeField]
+    private UISoundEffect cardSendSound, useSound;
+
 
     private RectTransform _rectTransform;
 
@@ -78,7 +86,9 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
         // _rectTransform.anchoredPosition = position;
 
         Tween.MoveTo(_rectTransform, _rectTransform.anchoredPosition, position, 0.6f, positionTweenCurve);
-        Tween.FloatTween(0, rotationAngle, 0.6f, (value) => _rectTransform.rotation = Quaternion.Euler(0, 0, value), positionTweenCurve);
+        Tween.FloatTween(0, rotationAngle, 0.3f, (value) => _rectTransform.rotation = Quaternion.Euler(0, 0, value), positionTweenCurve);
+
+        cardSendSound.Play();
     }
 
     void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
@@ -96,6 +106,8 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
             _rectTransform,
             _rectTransform.anchoredPosition,
             _unselectedPosition + delta, positionTweenTime);
+        
+        hoverSound.Play();
     }
 
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
@@ -128,6 +140,8 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
             _unselectedPosition + delta, positionTweenTime);
 
         IsSelected = true;
+
+        selectSound.Play();
     }
 
     public void Unselect()
@@ -140,6 +154,8 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
         Tween.MoveTo(_rectTransform, _rectTransform.anchoredPosition, _unselectedPosition, positionTweenTime);
 
         IsSelected = false;
+
+        unselectSound.Play();
     }
 
     public void UI_Discard()
@@ -199,5 +215,7 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
                 transform.localScale = Vector3.Lerp(Vector3.one, Vector3.one * 1.5f, value);
             
         }, () => Destroy(gameObject));
+
+        useSound.Play();
     }
 }

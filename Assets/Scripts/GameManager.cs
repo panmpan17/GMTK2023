@@ -21,6 +21,11 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private IntReference maxFailCount;
 
+    [SerializeField]
+    private UISoundEffect successSound, failSound;
+    [SerializeField]
+    private UISoundEffect winSound, loseWound;
+
     private List<CardType> unusedCards;
     private List<CardType> discardedCards;
 
@@ -110,8 +115,11 @@ public class GameManager : MonoBehaviour
         if (_successCount >= maxSuccessCount.Value)
         {
             End.ins.Show(true);
+            winSound.Play();
             return true;
         }
+
+        successSound.Play();
         return false;
     }
 
@@ -123,8 +131,11 @@ public class GameManager : MonoBehaviour
         if (_failCount >= maxFailCount.Value)
         {
             End.ins.Show(false);
+            loseWound.Play();
             return true;
         }
+
+        failSound.Play();
         return false;
     }
 }
